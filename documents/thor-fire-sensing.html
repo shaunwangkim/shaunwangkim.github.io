@@ -132,6 +132,11 @@ main>.panel .panel-lead{font-size:var(--summary-size,18px);font-weight:var(--sum
   main>.panel .panel-lead{font-size:var(--mobile-summary-size,17px);font-weight:var(--mobile-summary-weight,400);line-height:var(--mobile-summary-line,1.65)}
 }
 </style></head><body data-preview="false"><header class="site-header"><a class="brand" href="../index.html#about">Shaoquan Wang</a><button class="menu-toggle" aria-label="Toggle navigation" aria-expanded="false" aria-controls="site-navigation">Menu</button><nav id="site-navigation" class="nav-links" aria-label="Main navigation"><a href="../index.html#about">About Me</a><a href="../index.html#research">Research</a><a href="../index.html#projects">Projects</a><a href="../index.html#experience">Experience</a><a href="../index.html#education">Education</a><a href="../index.html#publications">Publications</a><a href="../index.html#patents">Patents</a><a href="../index.html#life">Personal Life</a></nav><div class="language-switch" aria-label="Language"><span aria-current="true">EN</span><a data-language-switch href="thor-fire-sensing.zh.html" lang="zh-CN">中文</a></div></header><main class="detail-main"><a class="breadcrumb" href="../projects.html">← Back</a><h1 class="detail-title">Optical fibres as a fire detection sensory device</h1><div data-reader tabindex="0" data-pages="[&quot;../assets/documents/thor-fire-sensing/page-1.jpg&quot;,&quot;../assets/documents/thor-fire-sensing/page-2.jpg&quot;,&quot;../assets/documents/thor-fire-sensing/page-3.jpg&quot;,&quot;../assets/documents/thor-fire-sensing/page-4.jpg&quot;,&quot;../assets/documents/thor-fire-sensing/page-5.jpg&quot;,&quot;../assets/documents/thor-fire-sensing/page-6.jpg&quot;,&quot;../assets/documents/thor-fire-sensing/page-7.jpg&quot;,&quot;../assets/documents/thor-fire-sensing/page-8.jpg&quot;,&quot;../assets/documents/thor-fire-sensing/page-9.jpg&quot;,&quot;../assets/documents/thor-fire-sensing/page-10.jpg&quot;,&quot;../assets/documents/thor-fire-sensing/page-11.jpg&quot;,&quot;../assets/documents/thor-fire-sensing/page-12.jpg&quot;,&quot;../assets/documents/thor-fire-sensing/page-13.jpg&quot;,&quot;../assets/documents/thor-fire-sensing/page-14.jpg&quot;,&quot;../assets/documents/thor-fire-sensing/page-15.jpg&quot;,&quot;../assets/documents/thor-fire-sensing/page-16.jpg&quot;,&quot;../assets/documents/thor-fire-sensing/page-17.jpg&quot;,&quot;../assets/documents/thor-fire-sensing/page-18.jpg&quot;]"><div class="reader-toolbar"><button data-page-prev aria-label="Previous page">← Previous</button><span data-page-count aria-live="polite"></span><button data-page-next aria-label="Next page">Next</button><button data-zoom-out aria-label="Zoom out">−</button><button data-zoom-in aria-label="Zoom in">＋</button></div><div class="reader-viewport"><img src="../assets/documents/thor-fire-sensing/page-1.jpg" alt="Document page 1"></div></div></main><footer class="site-footer"><span>Shaoquan Wang</span><span>RESEARCH / ENGINEERING</span><a href="../index.html#about">BACK TO TOP</a></footer><dialog class="video-dialog" aria-label="Interview player"><button class="dialog-close">Close</button><video controls playsinline preload="none" tabindex="0"></video></dialog><script>(() => {
+  function loadSlide(img){
+    if(img.dataset.sizes){img.sizes=img.dataset.sizes;delete img.dataset.sizes;}
+    if(img.dataset.srcset){img.srcset=img.dataset.srcset;delete img.dataset.srcset;}
+    img.src=img.dataset.src;delete img.dataset.src;
+  }
   const chinese=document.documentElement.lang==='zh-CN';
   const ui=(en,zh)=>chinese?zh:en;
   document.querySelector('[data-language-switch]')?.addEventListener('click',event=>{
@@ -226,13 +231,13 @@ main>.panel .panel-lead{font-size:var(--summary-size,18px);font-weight:var(--sum
         slide.classList.toggle('leaving',slide.classList.contains('current')&&i!==current);
         slide.classList.toggle('current', i === current);
         const media=slide.matches('img,video')?slide:slide.querySelector('img,video');
-        if (i === current && media?.dataset.src) {media.src = media.dataset.src; delete media.dataset.src;}
+        if (i === current && media?.dataset.src) {loadSlide(media);}
       });
       fadeTimer=setTimeout(()=>slides.forEach(slide=>slide.classList.remove('leaving')),reduceMotion?0:1250);
       const count = panel.querySelector('.slide-count');
       if (count) count.textContent = `${current + 1} / ${slides.length}`;
       const nextFrame=slides[(current+1)%slides.length],nextSlide=nextFrame?.matches('img')?nextFrame:nextFrame?.querySelector('img');
-      if(nextSlide?.tagName==='IMG'&&nextSlide.dataset.src){nextSlide.src=nextSlide.dataset.src;delete nextSlide.dataset.src;}
+      if(nextSlide?.tagName==='IMG'&&nextSlide.dataset.src){loadSlide(nextSlide);}
     };
     const schedule = () => {
       clearInterval(timer);
